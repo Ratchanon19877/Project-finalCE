@@ -176,6 +176,66 @@ class Program //ค็อป
     // 3. Analyze Production Data
     static void AnalyzeData()
     {
+        if (stationCount == 0)
+{
+Console.WriteLine("No production data.");
+return;
+}
+
+Console.WriteLine("\n===== ANALYSIS REPORT =====");
+
+int stationsToInspect = 0;
+double highestRate = -1;
+string highestStation = "";
+
+for (int i = 0; i < stationCount; i++)
+{
+int produced = productionData[i, 0];
+int defective = productionData[i, 1];
+
+double rate = CalculateRate(
+produced, defective);
+
+string status = CheckStatus(rate);
+
+Console.WriteLine(
+"Station: " + stationNames[i]);
+
+Console.WriteLine(
+"Defect Rate: " + rate.ToString("F2") + "%");
+
+Console.WriteLine(
+"Status: " + status);
+
+Console.WriteLine("-------------------------");
+
+
+if (rate > 5)
+{
+stationsToInspect++;
+}
+
+if (rate > highestRate)
+{
+highestRate = rate;
+highestStation = stationNames[i];
+}
+}
+
+Console.WriteLine("\n===== ANALYSIS SUMMARY =====");
+
+Console.WriteLine(
+"Total Stations: " + stationCount);
+
+Console.WriteLine(
+"Stations to Inspect: " + stationsToInspect);
+
+Console.WriteLine(
+"Highest Defect Station: " + highestStation);
+
+Console.WriteLine(
+"Highest Defect Rate: " +
+highestRate.ToString("F2") + "%");
         
     }
     
