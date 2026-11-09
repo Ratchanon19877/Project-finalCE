@@ -47,11 +47,11 @@ class Program //ค็อป
                 Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("Select menu");
+                Console.Write("Select menu ");
                 
                 Console.ResetColor();
 
-                if(!int.TryParse(Console.ReadLine(),out choice));
+                if (!int.TryParse(Console.ReadLine(), out choice))
                 {
                     Console.WriteLine("Please enter a number.");
                     choice = 0;
