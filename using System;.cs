@@ -1,9 +1,88 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-class Program //ค็อป
+namespace ConsoleApp4
 {
+class Program //ค็อป
+    {
+        static string[] stationNames = new string[20];
+        static int[,] productionData = new int[20,2];
+        static int stationCount = 0;
+        static void Main()
+        {
+            int choice = 0;
+            while(choice !=5)
+            {
+                Console.Clear;
+                   
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("========================================");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("          FACTORY DETECTIVE");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("       ProductionData Analysis Sytem");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("========================================"); 
 
+                Console();
+
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("1. Add Production Data");
+
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("2. Show All Stations");
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("3. Analyze Production");
+
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("4. Save Report to File");
+
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("5. Exit");
+
+                Console.WriteLine();
+
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write("Select menu");
+                
+                Console.ResetColor();
+
+                if(!int.TryParse(Console.ReadLine(),out choice));
+                {
+                    Console.WriteLine("Please enter a number.");
+                    choice = 0;
+                    continue;
+                }
+                switch(choice)
+                {
+                    case 1:
+                    AddData();
+                    break;
+
+                    case 2:
+                    ShowData();
+                    break;
+
+                    case 3:
+                    AnalyzeData();
+                    break;
+
+                    case 4:
+                    SaveReport();
+                    break;
+
+                    case 5:
+                    Console.WriteLine("Program ended.");
+                    break;
+
+                    default:
+                    Console.WriteLine("Invalid menu.");
+                    break;
+                }
             }
         }
     }
