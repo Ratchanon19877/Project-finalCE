@@ -91,20 +91,89 @@ class Program //ค็อป
     // 1. เพิ่มข้อมูลการผลิต
     static void AddData()
     {
-        
+        if (stationCount >= 20)
+        {
+            console.WriteLine("Station limit reached ");
+            return;
+        }
+        console.WriteLine("Enter station name : ");
+        string name = console..ReadLine();
+
+        if (Station.lsNullOrWhiteSpace(name))
+        {
+            console.WriteLine(Station name cannot be empty);
+            return;
+        }
+
+        console.WriteLine("Enter Total production : ");
+        int produced;
+
+        if (int.TryPerse(console.ReadLine(), ouut produced)
+        produced <= 0
+
+        {
+            Console.WriteLine("Inalive product amount ");
+            return
+        }
+
+        Console.WriteLine("Enter defective product: ")
+        int defective;
+
+        if (int.TryPerse(Console.ReadLine(), out defective))
+        defective <= 0
+        defective > produced
+        {
+            Console.WriteLine("Inalive defective amount");
+            return;
+        }
+
+        stationName[stationCount] = name;
+        producedtionData[stationCount, 0 ] = produced;
+        producedtionData[stationCount, 1 ] = defective;
+
+        stationCount++;
     }
 
     // 2. แสดงข้อมูลการผลิต
     static void ShowData()
     {
-      
+      if (stationCount == 0)
+    {
+
+        Console.WriteLine("No production data.");
+        return;
     }
+
+        Console.WriteLine("\n===== PRODUCTION DATA =====");
+        for (int i = 0; i < stationCount; i++)
+    {
+        Console.WriteLine("Station: " + stationNames[i]);
+
+        Console.WriteLine("Produced: " + productionData[i, 0]);
+
+        Console.WriteLine("Defective: " + productionData[i, 1]);
+
+        Console.WriteLine("-------------------------");
+    }
+}
 
     // คำนวณเปอร์เซ็นต์ของเสีย
     static double CalculateRate(int produced, int defective)
     {
-
+        return (double)defective / produced * 100;
     }
+
+    // ตรวจสอบสถานะ
+    static string CheckStatus(double rate)
+    {
+        if (rate > 5)
+        return "Needs Inspection";
+     }
+        else
+     {
+        return "Normal";
+     }
+}
     
 
     //ภูริ
