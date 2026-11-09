@@ -109,11 +109,11 @@ class Program //ค็อป
         int produced;
 
         if (int.TryPerse(console.ReadLine(), ouut produced)
-        produced <= 0
+        produced <= 0)
 
         {
             Console.WriteLine("Inalive product amount ");
-            return
+            return;
         }
 
         Console.WriteLine("Enter defective product: ")
