@@ -16,7 +16,7 @@ class Program //ค็อป
             int choice = 0;
             while(choice !=5)
             {
-                Console.Clear;
+                Console.Clear();
                    
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("========================================");
@@ -27,7 +27,7 @@ class Program //ค็อป
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("========================================"); 
 
-                Console();
+                Console.WriteLine();
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("1. Add Production Data");
@@ -85,7 +85,7 @@ class Program //ค็อป
                 }
             }
         }
-    }
+    
 
     //ไก่
     // 1. เพิ่มข้อมูลการผลิต
@@ -93,43 +93,41 @@ class Program //ค็อป
     {
         if (stationCount >= 20)
         {
-            console.WriteLine("Station limit reached ");
+            Console.WriteLine("Station limit reached.");
             return;
         }
-        console.WriteLine("Enter station name : ");
-        string name = console..ReadLine();
 
-        if (Station.lsNullOrWhiteSpace(name))
+        Console.WriteLine("Enter station name : ");
+        string name = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(name))
         {
-            console.WriteLine(Station name cannot be empty);
+            Console.WriteLine("Station name cannot be empty.");
             return;
         }
 
-        console.WriteLine("Enter Total production : ");
+        Console.WriteLine("Enter Total production : ");
         int produced;
 
-        if (int.TryPerse(console.ReadLine(), ouut produced)
-        produced <= 0)
-
+        if (!int.TryParse(Console.ReadLine(), out produced) || produced <= 0)
         {
-            Console.WriteLine("Inalive product amount ");
+            Console.WriteLine("Invalid product amount.");
             return;
         }
 
-        Console.WriteLine("Enter defective product: ")
+        Console.WriteLine("Enter defective product: ");
         int defective;
 
-        if (int.TryPerse(Console.ReadLine(), out defective))
-        defective <= 0
-        defective > produced
+        if (!int.TryParse(Console.ReadLine(), out defective) ||
+            defective < 0 || defective > produced)
         {
-            Console.WriteLine("Inalive defective amount");
+            Console.WriteLine("Invalid defective amount.");
             return;
         }
 
-        stationName[stationCount] = name;
-        producedtionData[stationCount, 0 ] = produced;
-        producedtionData[stationCount, 1 ] = defective;
+        stationNames[stationCount] = name;
+        productionData[stationCount, 0] = produced;
+        productionData[stationCount, 1] = defective;
 
         stationCount++;
     }
@@ -137,25 +135,22 @@ class Program //ค็อป
     // 2. แสดงข้อมูลการผลิต
     static void ShowData()
     {
-      if (stationCount == 0)
-    {
-
-        Console.WriteLine("No production data.");
-        return;
-    }
+        if (stationCount == 0)
+        {
+            Console.WriteLine("No production data.");
+            return;
+        }
 
         Console.WriteLine("\n===== PRODUCTION DATA =====");
+
         for (int i = 0; i < stationCount; i++)
-    {
-        Console.WriteLine("Station: " + stationNames[i]);
-
-        Console.WriteLine("Produced: " + productionData[i, 0]);
-
-        Console.WriteLine("Defective: " + productionData[i, 1]);
-
-        Console.WriteLine("-------------------------");
+        {
+            Console.WriteLine("Station: " + stationNames[i]);
+            Console.WriteLine("Produced: " + productionData[i, 0]);
+            Console.WriteLine("Defective: " + productionData[i, 1]);
+            Console.WriteLine("-------------------------");
+        }
     }
-}
 
     // คำนวณเปอร์เซ็นต์ของเสีย
     static double CalculateRate(int produced, int defective)
@@ -167,13 +162,14 @@ class Program //ค็อป
     static string CheckStatus(double rate)
     {
         if (rate > 5)
-        return "Needs Inspection";
-     }
+        {
+            return "Needs Inspection";
+        }
         else
-     {
-        return "Normal";
-     }
-}
+        {
+            return "Normal";
+        }
+    }
     
 
     //ภูริ
